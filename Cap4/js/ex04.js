@@ -8,30 +8,31 @@ frm.addEventListener("submit", (e) => {
     e.preventDefault()
 
     const valor = Number(frm.inValor.value)
-    const dividindoPorCem = valor % 100
-    const dividindoRestoPorCinquenta = dividindoPorCem % 50
 
-    let notasDeCem
-    let notasDeCinquenta
-    let notasDeDez
-    let restoDaDivisaoPorCem
-    let restoDaDivisaoPorCinquenta
-
-    if(dividindoPorCem === 0) {
-        notasDeCem = valor / 100
-    } else if (dividindoRestoPorCinquenta === 0) {
-        notasDeCem = Math.floor(valor / 100)
-        restoDaDivisaoPorCem = valor - (100 * notasDeCem)
-        notasDeCinquenta = restoDaDivisaoPorCem / 50
-    } else {
-        notasDeCem = Math.floor(valor / 100)
-        restoDaDivisaoPorCem = valor - (100 * notasDeCem)
-        notasDeCinquenta =  Math.floor(restoDaDivisaoPorCem / 50)
-        restoDaDivisaoPorCinquenta = restoDaDivisaoPorCem - (50* notasDeCinquenta)
-        notasDeDez = restoDaDivisaoPorCinquenta / 10
+    if(valor % 10 != 0) {
+        alert(`Valor indisponível, temos apenas notas de R$100, R$50 e R$10`)
+        return
     }
 
-    rsp.innerText = `Notas de R$100: ${notasDeCem}`
-    rsp2.innerText = `Notas de R$50: ${notasDeCinquenta}`
-    rsp3.innerText = `Notas de R$10: ${notasDeDez}`
+    let resto
+
+    const notasDeCem = Math.floor(valor / 100)
+    resto = valor - (100 * notasDeCem)
+    const notasDeCinquenta = Math.floor(resto / 50)
+    resto = resto - (50* notasDeCinquenta)
+    const notasDeDez = resto / 10
+    
+
+    if(notasDeCem > 0) {
+        rsp.innerText = `Notas de R$100: ${notasDeCem}`
+    } 
+
+    if (notasDeCinquenta > 0) {
+        rsp2.innerText = `Notas de R$50: ${notasDeCinquenta}`
+    }
+
+    if (notasDeDez > 0) {
+        rsp3.innerText = `Notas de R$10: ${notasDeDez}`
+    }  
+   
 })
