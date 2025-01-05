@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <title>JS</title>
+    </head>
+    <body>
+        <h1>Programa Brinquedoteca</h1>
+        <form>
+            <span>Nome da Criança:</span>
+            <input type="text" id="inNome" required>
+            <div>
+                <span>Idade:</span>
+                <input type="number" min="0" id="inIdade" required>
+                <input type="submit" value="Adicionar">
+            </div>
+            <div>
+                <input type="button" value="Listar Todos" id="btnListar">
+                <input type="button" value="Filtrar por Idade" id="btnFiltrar">
+            </div>
+        </form>
+        <h4 id="outLista"></h4>
+        <h5 id="outCarrosAdicionados"></h5>
+        <script src="js/ex04.js"></script>
+    </body>
+</html>
