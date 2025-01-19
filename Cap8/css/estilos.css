@@ -17,3 +17,11 @@ h1 {
 pre {
     font-size: 1.2em;
 }
+
+.oculta {
+    display: none
+}
+
+.exibe {
+    display: inline;
+}

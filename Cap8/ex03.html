@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <title>JS</title>
+    </head>
+    <body>
+        <h1>Veterinária Avenida</h1>
+        <form>
+            <p>
+                Valor da Vacina:
+                <input type="number" id="inValor" min="0" step="0.01" required>
+            </p>
+            <p>
+                Possuí Convênio:
+                <input type="radio" name="convenio" id="rbSim" checked
+                    autofocus> Sim
+                <input type="radio" name="convenio" id="rbNao"> Não
+            </p>
+            <p id="inConvenioGroup" class="exibe">
+                Convênio:
+                <select id="inConvenio">
+                    
+                    <option value="amigosDosAnimais">Amigo dos Animais</option>
+                    <option value="saudeAnimal">Saúde Animal</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" value="Calcular Desconto">
+            </p>
+
+        </form>
+        <h3 id="outDesconto"></h3>
+        <h4 id="outAPagar"></h4>
+        <script src="js/ex03.js"></script>
+    </body>
+</html>
