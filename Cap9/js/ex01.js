@@ -1,6 +1,6 @@
 const inRadios = document.querySelectorAll("input")
-const dvTitulo = document.getElementById("#divTitulo")
-const imClube = document.getElementById("#imgClube")
+const dvTitulo = document.getElementById("divTitulo")
+const imClube = document.getElementById("imgClube")
 
 const trocarClube = () => {
     console.log("Chamei aqui")
@@ -15,6 +15,10 @@ const trocarClube = () => {
             break
         }
     }
+
+    console.log('selecao', selecao)
+
+    console.log('dvTitulo', dvTitulo)
 
     if (selecao <= 2) {
         dvTitulo.className = `row cores-${clubes[selecao]}` //modifica a cor
