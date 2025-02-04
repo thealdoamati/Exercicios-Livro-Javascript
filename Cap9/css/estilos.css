@@ -16,3 +16,11 @@ pre {
     color: green;
     background-color: white;
 }
+
+.oculta {
+    display: none
+}
+
+.exibe {
+    display: inline;
+}
