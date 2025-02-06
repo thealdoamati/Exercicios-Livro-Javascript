@@ -10,15 +10,12 @@ frm.addEventListener("submit", (e) => {
 
     const novoServico = frm.inServico.value
     adicionarServico(novoServico)
-
-
-    rspPendentes.innerText = `Serviços Pendentes: ` + servicosArray.length
+    atualizarServicosPendentes()
+    
 })
 
 const adicionarServico = (novoServico) => {
     servicosArray.push(novoServico)
-    console.log(servicosArray)
-
 
     if (localStorage.getItem("Serviço")) {
         const servicos = localStorage.getItem("Serviço") + ";" + novoServico
@@ -32,11 +29,25 @@ const adicionarServico = (novoServico) => {
     inServicoGroup.className = "exibe"
 }
 
-frm.btExecutar.addEventListener("click", () => {
-    const executado = servicosArray.shift()
+const atualizarServicosPendentes = () => {
+    rspPendentes.innerText = `Serviços Pendentes: ` + servicosArray.length
+}
 
-    console.log(executado)
+frm.btExecutar.addEventListener("click", () => {
+    if(!localStorage.getItem("Serviços") || localStorage.getItem("Serviços") === "") {
+        alert("Você precisa adicionar um serviço antes!")
+        return
+    } 
+
+    const executado = servicosArray.shift()
+    rspExecucao.innerText = executado
+    
+    localStorage.setItem("Serviços", servicosArray)
+    atualizarServicosPendentes()
 })
+
+
+
 
 const exibirServico = () => {
     if (!localStorage.getItem("Serviços")) {
@@ -46,7 +57,7 @@ const exibirServico = () => {
     inServicoGroup.className = "exibe"
 
     const servicos = localStorage.getItem("Serviços")
-    servicosArray = servicos.split(";")
+    servicosArray = servicos.split(",")
 
     console.log(servicosArray)
 
