@@ -16,7 +16,7 @@ frm.addEventListener("submit", (e) => {
 });
 
 
-frm.addEventListener("click", () => {
+frm.btGravar.addEventListener("click", () => {
   const tarefas = document.querySelectorAll("h5")
 
   if(tarefas.length === 0) {
@@ -38,3 +38,20 @@ frm.addEventListener("click", () => {
     alert("Ok! Tarefas Salvas")
   }
 })
+
+const verificarTarefas = () => {
+  if(localStorage.getItem("tarefasDia")) {
+    const dados = localStorage.getItem("tarefasDia").split(";")
+
+    dados.forEach(dado => {
+      const h5 = document.createElement("h5")
+      const texto = document.createTextNode(dado)
+      h5.appendChild(texto)
+      dvQuatro.appendChild(h5)
+    })
+  }
+}
+
+
+
+window.addEventListener("load", verificarTarefas)
