@@ -15,6 +15,52 @@ frm.addEventListener("submit", (e) => {
   frm.inTarefa.focus()
 });
 
+frm.btSelecionar.addEventListener("click", () => {
+  const tarefas = document.querySelectorAll("h5")
+
+  if(tarefas.length === 0) {
+    alert("Não há tarefas para selecionar")
+    return
+  }
+
+  let aux = -1
+
+  for (let i = 0; i < tarefas.length; i++) {
+    if(tarefas[i].className == "tarefa-selecionada") {
+      tarefas[i].className = "tarefa-normal"
+      aux = i
+      break
+    }
+  }
+
+  // Se a linha que está selecionada é a ultima, irá voltar para a primeira
+  if(aux == tarefas.length - 1) {
+    aux = -1
+  }
+
+  tarefas[aux + 1].className = "tarefa-selecionada"
+})
+
+frm.btRetirar.addEventListener("click", () => {
+  const tarefas = document.querySelectorAll("h5")
+
+  aux = -1
+
+  tarefas.forEach((tarefa, i) => {
+    if(tarefa.className == "tarefa-selecionada"){
+      aux = i
+    }
+  })
+
+  if(aux == -1){
+    alert("Não há tarefas selecionadas")
+    return
+  }
+
+  if(confirm(`Confirmar exclusão da tarefa ${tarefas[aux].innerText}?`)){
+    dvQuatro.removeChild(tarefas[aux])
+  }
+})
 
 frm.btGravar.addEventListener("click", () => {
   const tarefas = document.querySelectorAll("h5")
