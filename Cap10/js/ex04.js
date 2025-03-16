@@ -27,3 +27,7 @@ const gerarImagens = (num) => {
 
     dvVelasRespose.appendChild(novaImagem)
 }
+
+frm.addEventListener("reset", () => {
+    window.location.reload()
+})
