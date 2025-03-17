@@ -20,8 +20,6 @@ frm.addEventListener("submit", (e) => {
 
 frm.btMontar.addEventListener("click", () => {
     const clubes = document.querySelectorAll("h5")
-    
-    const tbClubes2 = document.querySelector("table").querySelector("tbody")
 
     if (clubes.length === 0) {
         alert("Adicione clubes")
@@ -40,6 +38,8 @@ frm.btMontar.addEventListener("click", () => {
         col1.innerText = clubes[i].innerText
         col2.innerText = clubes[i + 1].innerText
     }
+
+    frm.btAdicionar.disabled = true
 })
 
 frm.addEventListener("reset", () => {
