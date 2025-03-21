@@ -89,7 +89,6 @@ frm.btResumo.addEventListener("click", () => {
     for (const aposta of apostas) {
         // - 1 por que começa com 0
         somaApostas[aposta.cavalo - 1] += aposta.valor
-        console.log('somaApostas', somaApostas)
     }
 
     let resposta = `No Cavalo........... R$ Apostado\n${"-".repeat(35)}\n`
