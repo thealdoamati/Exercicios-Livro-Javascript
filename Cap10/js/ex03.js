@@ -23,7 +23,7 @@ const inserirLinha = (titulo, genero) => {
 
   col1.innerText = titulo;
   col2.innerText = genero;
-  col3.innerHTML = "<i class='exclui title='Excluir'>&#1008</i>";
+  col3.innerHTML = "<i class='exclui' title='Excluir'>&#1008</i>";
 };
 
 const gravarLinha = (titulo, genero) => {
