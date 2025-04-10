@@ -3,7 +3,7 @@ const respPalavra = document.querySelector("#outPalavra");
 const respErros = document.querySelector("#outErros");
 const respDica = document.querySelector("#outDica");
 const respChances = document.querySelector("#outChances");
-const rspMensagemFinal = document.querySelector("#outMensagemFinal");
+const respMensagemFinal = document.querySelector("#outMensagemFinal");
 const imgStatus = document.querySelector("img");
 
 let palavraSorteada;
@@ -104,3 +104,27 @@ frm.addEventListener("submit", (e) => {
   frm.inLetra.value = ""
   frm.inLetra.focus()
 });
+
+const verificarFim = () => {
+    const chances = Number(respChances.innerText)
+
+    console.log(chances)
+
+    if(chances === 0) {
+        respMensagemFinal.className = "display-3 text-danger"
+        respMensagemFinal.innerText = `Ah... é ${palavraSorteada}. Você Perdeu!`
+        concluirJogo()
+    } else if (respPalavra.innerText === palavraSorteada) {
+        respMensagemFinal.classList = "display-3 text-primary"
+        respMensagemFinal.innerText = "Parabéns!! Você Ganhou."
+        trocarStatus(4)
+        concluirJogo()
+    }
+}
+
+const concluirJogo = () => {
+    respDica.innerHTML = "* Clique no botão 'Iniciar Jogo' para jogar novamente"
+    frm.inLetra.disabled = true
+    frm.btJogar.disabled = true
+    frm.btVerDica.disabled = true
+}
