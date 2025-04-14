@@ -22,3 +22,14 @@ app.post("/filmes", (req, res) => {
   const {titulo, genero} = req.body;
   res.send(`Filme: ${titulo} - Gênero: ${genero}, recebido...`)
 });
+
+// Exemplo de middleware
+
+const log = (req, res, next) => {
+  console.log(`..................... Acessado em ${new Date()}`)
+  next()
+}
+
+app.get('/transfere', log, (req, res) => {
+  res.send("Ok! Valor transferido com sucesso...")
+})
