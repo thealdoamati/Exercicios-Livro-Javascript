@@ -13,3 +13,12 @@ app.get("/cap12", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+app.use(express.json());
+
+app.post("/filmes", (req, res) => {
+  // const titulo = req.body.titulo
+  // const genero = req.body.genero
+  const {titulo, genero} = req.body;
+  res.send(`Filme: ${titulo} - Gênero: ${genero}, recebido...`)
+});
