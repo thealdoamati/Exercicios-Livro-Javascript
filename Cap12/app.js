@@ -33,3 +33,8 @@ const log = (req, res, next) => {
 app.get('/transfere', log, (req, res) => {
   res.send("Ok! Valor transferido com sucesso...")
 })
+
+// Arquivo com rotas para o cadastro de livros
+const livros = require('./livros')
+
+app.use('/livros', livros) // identificação da rota e da const (require) associada
