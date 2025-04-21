@@ -1,3 +1,6 @@
+const cors = require("cors")
+router.use(cors())
+
 const express = require("express") // pacotes
 const router = express.Router()
 
