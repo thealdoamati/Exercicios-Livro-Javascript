@@ -32,16 +32,31 @@ const ManutencaoLivros = () => {
   };
 
   const excluir = async (id, titulo) => {
-    if (!window.confirm(`Confirma a exclusão do livro "${titulo}"?`)){
+    if (!window.confirm(`Confirma a exclusão do livro "${titulo}"?`)) {
       return
     }
-      try {
-        await inAxios.delete(`livros/${id}`);
-        setLivros(livros.filter((livro) => livro.id !== id));
-      } catch (error) {
-        alert(`Erro ao excluir livro: ${error}`);
-      }
+    try {
+      await inAxios.delete(`livros/${id}`);
+      setLivros(livros.filter((livro) => livro.id !== id));
+    } catch (error) {
+      alert(`Erro ao excluir livro: ${error}`);
+    }
   };
+
+  const alterar = async (id, titulo, index) => {
+    const novoPreco = Number(prompt(`Para qual valor você deseja alterar o livro ${titulo}?`))
+    if (isNaN(novoPreco) || novoPreco === 0) {
+      return
+    }
+    try {
+      await inAxios.put(`livros/${id}`, { preco: novoPreco })
+      const livrosAlteracao = [...livros]
+      livrosAlteracao[index].preco = novoPreco
+      setLivros(livrosAlteracao)
+    } catch (error) {
+      alert(`Erro ao alterar livro: ${error}`);
+    }
+  }
 
   return (
     <div className="container">
@@ -101,6 +116,7 @@ const ManutencaoLivros = () => {
               preco={livro.preco}
               foto={livro.foto}
               excluirClick={() => excluir(livro.id, livro.titulo)}
+              alterarClick={() => alterar(livro.id, livro.titulo, index)}
             />
           ))}
         </tbody>
