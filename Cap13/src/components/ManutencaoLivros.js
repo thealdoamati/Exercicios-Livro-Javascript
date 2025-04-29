@@ -1,9 +1,11 @@
 import ItemLista from "./ItemLista";
 import { useEffect, useState } from "react";
 import { inAxios } from "../config_axios";
+import { useForm } from "react-hook-form";
 
 const ManutencaoLivros = () => {
   const [livros, setLivros] = useState([]);
+  const { register, handleSubmit, reset } = useForm();
 
   const obterLista = async () => {
     try {
@@ -18,6 +20,29 @@ const ManutencaoLivros = () => {
     obterLista();
   }, []);
 
+  const filtrarLista = async (campos) => {
+    try {
+      const lista = await inAxios.get(`livros/filtro/${campos.palavra}`);
+      lista.data.length
+        ? setLivros(lista.data)
+        : alert("Não há livros com a palavra-chave pesquisada.");
+    } catch (error) {
+      alert(`Erro... Não foi possível obter os dados: ${error}`);
+    }
+  };
+
+  const excluir = async (id, titulo) => {
+    if (!window.confirm(`Confirma a exclusão do livro "${titulo}"?`)){
+      return
+    }
+      try {
+        await inAxios.delete(`livros/${id}`);
+        setLivros(livros.filter((livro) => livro.id !== id));
+      } catch (error) {
+        alert(`Erro ao excluir livro: ${error}`);
+      }
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -25,13 +50,14 @@ const ManutencaoLivros = () => {
           <h4 className="fst-italic mt-3">Manutenção</h4>
         </div>
         <div className="col-sm-5">
-          <form>
+          <form onSubmit={handleSubmit(filtrarLista)}>
             <div className="input-group mt-3">
               <input
                 type="text"
                 className="form-control"
                 placeholder="Título ou autor"
                 required
+                {...register("palavra")}
               />
               <input
                 type="submit"
@@ -43,6 +69,7 @@ const ManutencaoLivros = () => {
                 className="btn btn-danger"
                 value="Todos"
                 onClick={() => {
+                  reset({ palavra: "" });
                   obterLista();
                 }}
               />
@@ -73,6 +100,7 @@ const ManutencaoLivros = () => {
               ano={livro.ano}
               preco={livro.preco}
               foto={livro.foto}
+              excluirClick={() => excluir(livro.id, livro.titulo)}
             />
           ))}
         </tbody>
