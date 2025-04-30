@@ -11,14 +11,9 @@ Pages: 352
 ISBN (Print): 978-65-86057-90-4
 ISBN (eBook): 978-65-86057-91-1
 
-  Description:
 This book covers essential programming concepts for beginners, including input/output, conditions, loops, arrays, strings, dates, functions, debugging, and web development with JavaScript. The 2nd edition includes new chapters on Node.js, Express, and React, demonstrating traditional algorithm development, back-end applications with database persistence, and front-end interfaces.
 
-  Repository Purpose
-
 The goal of this repository is to document my progress as I work through all the exercises in the book. Each exercise is implemented in JavaScript, following the book's examples and guidelines. The solutions aim to reinforce my understanding of programming logic and algorithms while exploring modern JavaScript features and frameworks like Node.js, Express, and React.
-
-  Acknowledgments
 
 Thanks to Edécio Fernando Iepsen for writing an accessible and comprehensive guide to programming with JavaScript.
 Inspired by the book's practical approach to teaching algorithms and programming logic.
